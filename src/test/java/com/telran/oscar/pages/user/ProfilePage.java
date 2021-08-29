@@ -34,10 +34,25 @@ public class ProfilePage extends PageBase {
     WebElement editEmailField;
 
     @FindBy(xpath = "//button[.='Save']")
-    WebElement saveEditBtn;
+    WebElement saveBtn;
 
     @FindBy(className = "wicon")
     WebElement message;
+
+    @FindBy(css = "tr:nth-child(1) > td")
+    WebElement firstNameCell;
+
+    @FindBy(id = "id_old_password")
+    WebElement odlPasswordInput;
+
+    @FindBy(id = "id_new_password1")
+    WebElement newPasswordInput;
+
+    @FindBy(id = "id_new_password2")
+    WebElement newPasswordConfirmInput;
+
+    @FindBy(xpath = "//a[.='Change password']")
+    WebElement changePasswordBtn;
 
     public ProfilePage clickOnDeleteProfileBtn(){
         deleteProfileBtn.click();
@@ -72,16 +87,35 @@ public class ProfilePage extends PageBase {
         return this;
     }
 
-    public ProfilePage clickOnSaveEditBtn(){
-        saveEditBtn.click();
+
+    public ProfilePage clickOnSaveBtn(){
+        saveBtn.click();
         return this;
     }
 
+    public ProfilePage fillChangePasswordForm(String oldPassword, String newPassword, String newPasswordConfirm){
+        if(oldPassword != ""){
+            type(odlPasswordInput, oldPassword);
+        }
+        if(newPassword != ""){
+            type(newPasswordInput, newPassword);
+        }
+        if(newPasswordConfirm != ""){
+            type(newPasswordConfirmInput, newPasswordConfirm);
+        }
+        return this;
+    }
+    
     public String getMessage(){
         return  message.getText();
     }
 
-    /*public boolean isNameChanged(String name){
-        return (Boolean) driver.findElement(By.xpath(String.format("//td[.='%s']", name)));
-    }*/
+    public boolean isNameChanged(String name){
+        return firstNameCell.getText().contains(name);
+    }
+
+    public ProfilePage clickOnChangePasswordBtn() {
+        changePasswordBtn.click();
+        return this;
+    }
 }

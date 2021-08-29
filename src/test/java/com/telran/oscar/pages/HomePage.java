@@ -15,6 +15,7 @@ public class HomePage extends PageBase{
     WebElement confirmDeleteProfileMessage;
 
 
+
     public String getConfirmDeleteProfileMessage(){
         return confirmDeleteProfileMessage.getText();
     }

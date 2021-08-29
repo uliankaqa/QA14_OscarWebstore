@@ -29,7 +29,12 @@ public class MyListener extends AbstractWebDriverEventListener {
 
     @Override
     public void afterClickOn(WebElement element, WebDriver driver) {
-        //logger.info("Click on element " + element + " is " + element.isSelected());
+       // logger.info("Click on element ");
+    }
+
+    @Override
+    public void afterGetText(WebElement element, WebDriver driver, String text) {
+       logger.info("Found text : " + text);
     }
 
     @Override

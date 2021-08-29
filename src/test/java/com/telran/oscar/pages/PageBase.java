@@ -3,6 +3,8 @@ package com.telran.oscar.pages;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -11,6 +13,7 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 public class PageBase {
@@ -61,7 +64,8 @@ public class PageBase {
 
     public String takeScreenshotWithScrollDown(String pathToFile){
         Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(1000))
+                .shootingStrategy(ShootingStrategies
+                        .viewportPasting(ShootingStrategies.scaling(2f),1000))
                 .takeScreenshot(driver);
         try{
             ImageIO.write(screenshot.getImage(), "PNG", new File(pathToFile));
@@ -78,6 +82,7 @@ public class PageBase {
             element.sendKeys(text);
         }
     }
+
     public void closeBanner() {
         driver.findElement(By.id("close-fixedban")).click();
     }

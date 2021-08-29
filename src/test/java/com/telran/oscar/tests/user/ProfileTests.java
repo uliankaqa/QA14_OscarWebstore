@@ -17,6 +17,7 @@ public class ProfileTests extends TestBase {
 
     private final String deleteProfileConfirmMessage = "Your profile has now been deleted. Thanks for using the site.";
     private final String editConfirmMessage = "Profile updated";
+    private final String changePasswordConfirmationMessage = "Password updated";
     @BeforeMethod
     public void ensurePrecondition(){
         new NavigationPage(driver).clickOnLoginOrRegisterBtn();
@@ -36,13 +37,25 @@ public class ProfileTests extends TestBase {
     @Test(priority = 1, dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")
     public void editProfilePositiveTest(String email, String password){
         new RegistrationAndLoginPage(driver).fillLogInForm(email, password).clickOnLogInBtn();
-        new NavigationPage(driver)
-                .clickOnAccountBtn();
+        new NavigationPage(driver).clickOnAccountBtn();
 
         new ProfilePage(driver).clickOnEditeProfileBtn()
                 .fillEditForm("Puli", "Guli", "")
-                .clickOnSaveEditBtn();
+                .clickOnSaveBtn();
         Assert.assertTrue(new ProfilePage(driver).getMessage().contains(editConfirmMessage));
+        Assert.assertTrue(new ProfilePage(driver).isNameChanged("Puli Guli"));
+
+    }
+
+    @Test(priority = 1, dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")
+    public void changePasswordPositiveTest(String email, String password){
+        new RegistrationAndLoginPage(driver).fillLogInForm(email, password).clickOnLogInBtn();
+        new NavigationPage(driver).clickOnAccountBtn();
+
+        new ProfilePage(driver).clickOnChangePasswordBtn()
+                .fillChangePasswordForm(password, "newPassword!1", "newPassword!1")
+                .clickOnSaveBtn();
+        Assert.assertTrue(new ProfilePage(driver).getMessage().contains(changePasswordConfirmationMessage));
 
     }
 }
