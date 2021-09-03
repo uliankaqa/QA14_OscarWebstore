@@ -1,6 +1,6 @@
 package com.telran.oscar.pages.basket;
 
-import com.telran.oscar.pages.HomePage;
+import com.telran.oscar.pages.home.HomePage;
 import com.telran.oscar.pages.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,16 +1,13 @@
 package com.telran.oscar.tests.user;
 
-import com.telran.oscar.pages.HomePage;
-import com.telran.oscar.pages.NavigationPage;
-import com.telran.oscar.pages.PageBase;
+import com.telran.oscar.pages.home.HomePage;
+import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.user.ProfilePage;
 import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.DataProviders;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ProfileTests extends TestBase {
@@ -20,14 +17,14 @@ public class ProfileTests extends TestBase {
     private final String changePasswordConfirmationMessage = "Password updated";
     @BeforeMethod
     public void ensurePrecondition(){
-        new NavigationPage(driver).clickOnLoginOrRegisterBtn();
+        new HeaderPage(driver).clickOnLoginOrRegisterBtn();
     }
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")
     public void deleteUserProfilePositive(String email, String password){
         new RegistrationAndLoginPage(driver).fillLogInForm(email, password).clickOnLogInBtn();
 
-        new NavigationPage(driver).clickOnAccountBtn()
+        new HeaderPage(driver).clickOnAccountBtn()
                 .clickOnDeleteProfileBtn()
                 .typePassword(password)
                 .clickOnDeleteProfileConfirmBtn();
@@ -37,7 +34,7 @@ public class ProfileTests extends TestBase {
     @Test(priority = 1, dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")
     public void editProfilePositiveTest(String email, String password){
         new RegistrationAndLoginPage(driver).fillLogInForm(email, password).clickOnLogInBtn();
-        new NavigationPage(driver).clickOnAccountBtn();
+        new HeaderPage(driver).clickOnAccountBtn();
 
         new ProfilePage(driver).clickOnEditeProfileBtn()
                 .fillEditForm("Puli", "Guli", "")
@@ -50,7 +47,7 @@ public class ProfileTests extends TestBase {
     @Test(priority = 1, dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")
     public void changePasswordPositiveTest(String email, String password){
         new RegistrationAndLoginPage(driver).fillLogInForm(email, password).clickOnLogInBtn();
-        new NavigationPage(driver).clickOnAccountBtn();
+        new HeaderPage(driver).clickOnAccountBtn();
 
         new ProfilePage(driver).clickOnChangePasswordBtn()
                 .fillChangePasswordForm(password, "newPassword!1", "newPassword!1")

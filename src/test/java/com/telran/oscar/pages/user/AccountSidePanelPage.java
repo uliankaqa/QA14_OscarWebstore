@@ -10,6 +10,9 @@ public class AccountSidePanelPage extends PageBase {
         super(driver);
     }
 
+    @FindBy(id = "browse")
+    WebElement browseStoreBtn;
+
     @FindBy(xpath = "//a[.='Profile']")
     WebElement profileBtn;
 

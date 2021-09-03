@@ -19,6 +19,13 @@ public class BasketPage extends PageBase {
     @FindBy(xpath = "//a[.='Proceed to checkout']")
     WebElement proceedToCheckoutBtn;
 
+    @FindBy(tagName = "h1")
+    WebElement basketTitle;
+
+    public String getBasketPageTitle(){
+        return basketTitle.getText();
+    }
+
     public Boolean isProductAddedToBasket(String productTitle){
         for (WebElement elem : baskedFormList) {
             String title = elem.findElement(By.tagName("h3")).getText();

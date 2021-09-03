@@ -1,6 +1,5 @@
 package com.telran.oscar.pages.user;
 
-import com.telran.oscar.pages.HomePage;
 import com.telran.oscar.pages.PageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

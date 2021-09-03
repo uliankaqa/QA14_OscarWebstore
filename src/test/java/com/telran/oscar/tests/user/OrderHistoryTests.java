@@ -1,6 +1,7 @@
 package com.telran.oscar.tests.user;
 
-import com.telran.oscar.pages.NavigationPage;
+import com.telran.oscar.pages.home.BrowseStorePage;
+import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.basket.ConfirmationPaymentPage;
 import com.telran.oscar.pages.products.BooksPage;
 import com.telran.oscar.pages.user.AccountSidePanelPage;
@@ -18,7 +19,7 @@ public class OrderHistoryTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition(){
-        new NavigationPage(driver).clickOnLoginOrRegisterBtn()
+        new HeaderPage(driver).clickOnLoginOrRegisterBtn()
                 .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
                 .clickOnLogInBtn();
     }
@@ -26,9 +27,9 @@ public class OrderHistoryTests extends TestBase {
     @Test
     public void oderCreatePositiveTest(){
 
-        new NavigationPage(driver).clickOnBooksTabOnSidePanel();
+        new BrowseStorePage(driver).clickOnBooksTab();
         new BooksPage(driver).clickOnAddToBaskedOnBookItem(ProductsData.byeBookName1);
-        new NavigationPage(driver).clickOnViewBasketBtn().clickOnProceedToCheckoutBtn();
+        new HeaderPage(driver).clickOnViewBasketBtn().clickOnProceedToCheckoutBtn();
         new ShippingAddressPage(driver).shipToAddress(RegisteredUserData.title,
                 RegisteredUserData.userFirstName, RegisteredUserData.userLastName,
                 RegisteredUserData.firstAddressLine, RegisteredUserData.secondAddressLine,
@@ -40,7 +41,7 @@ public class OrderHistoryTests extends TestBase {
         String orderTotal = new ConfirmationPaymentPage(driver).getOrderTotal();;
 
        new ConfirmationPaymentPage(driver).clickOnContinueShoppingBtn();
-       new NavigationPage(driver).clickOnAccountBtn();
+       new HeaderPage(driver).clickOnAccountBtn();
        new AccountSidePanelPage(driver).clickOnOrderHistoryBtn().filterOrder(orderNumber);
 
        Assert.assertTrue(new OrderHistoryPage(driver).getOrderNumber().contains(orderNumber));

@@ -1,19 +1,18 @@
 package com.telran.oscar.tests.user;
 
-import com.telran.oscar.pages.NavigationPage;
+import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.user.PasswordResetPage;
 import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition(){
-        new NavigationPage(driver).clickOnLoginOrRegisterBtn();
+        new HeaderPage(driver).clickOnLoginOrRegisterBtn();
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider ="registrationAndLoginPositive")

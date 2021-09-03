@@ -1,9 +1,8 @@
 package com.telran.oscar.tests.user;
 
-import com.telran.oscar.pages.NavigationPage;
+import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.user.AccountSidePanelPage;
 import com.telran.oscar.pages.user.AddressBookPage;
-import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.RegisteredUserData;
 import org.testng.Assert;
@@ -14,10 +13,10 @@ public class AddressBookTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition(){
-        new NavigationPage(driver).clickOnLoginOrRegisterBtn()
+        new HeaderPage(driver).clickOnLoginOrRegisterBtn()
                 .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
                 .clickOnLogInBtn();
-        new NavigationPage(driver).clickOnAccountBtn();
+        new HeaderPage(driver).clickOnAccountBtn();
         new AccountSidePanelPage(driver).clickOnAddressBookBtn();
     }
 

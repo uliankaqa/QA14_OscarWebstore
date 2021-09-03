@@ -17,6 +17,16 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp(){
+
+        // ChromeOptions options = new ChromeOptions();
+        // options.addArguments("headless");
+        //  options.addArguments("window-size=1200x800");
+//        if (browser.equals(BrowserType.CHROME)) {
+       // driver = new ChromeDriver();
+//        }else if (browser.equals(BrowserType.FIREFOX)){
+//            driver = new FirefoxDriver(options);
+        //       }
+        // driver.manage().window().maximize();
         driver = new EventFiringWebDriver(new ChromeDriver());
         driver.register(new MyListener());
         driver.manage().window().maximize();

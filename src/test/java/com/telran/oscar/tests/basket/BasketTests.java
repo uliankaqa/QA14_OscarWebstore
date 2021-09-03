@@ -1,9 +1,9 @@
 package com.telran.oscar.tests.basket;
 
-import com.telran.oscar.pages.NavigationPage;
+import com.telran.oscar.pages.home.BrowseStorePage;
+import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.basket.BasketPage;
 import com.telran.oscar.pages.products.BooksPage;
-import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.ProductsData;
 import com.telran.oscar.utils.RegisteredUserData;
@@ -15,16 +15,16 @@ public class BasketTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition(){
-        new NavigationPage(driver).clickOnLoginOrRegisterBtn()
+        new HeaderPage(driver).clickOnLoginOrRegisterBtn()
                 .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
                 .clickOnLogInBtn();
     }
 
     @Test
     public void addToBasketBookWithNamePositiveTest() {
-        new NavigationPage(driver).clickOnBooksTabOnSidePanel();
+        new BrowseStorePage(driver).clickOnBooksTab();
         new BooksPage(driver).clickOnAddToBaskedOnBookItem(ProductsData.byeBookName1);
-        new NavigationPage(driver).clickOnViewBasketBtn();
+        new HeaderPage(driver).clickOnViewBasketBtn();
         Assert.assertTrue(new BasketPage(driver).isProductAddedToBasket(ProductsData.byeBookName1));
     }
 }

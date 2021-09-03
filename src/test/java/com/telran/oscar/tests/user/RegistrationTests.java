@@ -1,6 +1,6 @@
 package com.telran.oscar.tests.user;
 
-import com.telran.oscar.pages.NavigationPage;
+import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.DataProviders;
@@ -15,7 +15,7 @@ public class RegistrationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition(){
-        new NavigationPage(driver).clickOnLoginOrRegisterBtn();
+        new HeaderPage(driver).clickOnLoginOrRegisterBtn();
     }
 
     @Test(priority = 1, groups = "functional", dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")

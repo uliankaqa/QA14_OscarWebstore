@@ -58,4 +58,12 @@ public class BooksPage extends PageBase
     }
 
 
+    @FindBy(tagName = "h1")
+    WebElement booksTitle;
+
+    public String getBooksPageTitle(){
+        return booksTitle.getText();
+    }
+
+
 }
