@@ -5,6 +5,7 @@ import com.telran.oscar.pages.user.PasswordResetPage;
 import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.DataProviders;
+import com.telran.oscar.utils.UserData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,9 +16,9 @@ public class LoginTests extends TestBase {
         new HeaderPage(driver).clickOnLoginOrRegisterBtn();
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider ="registrationAndLoginPositive")
-    public void loginPositiveTest(String email, String pass){
-        new RegistrationAndLoginPage(driver).fillLogInForm(email, pass).clickOnLogInBtn();
+    @Test
+    public void loginPositiveTest(){
+        new RegistrationAndLoginPage(driver).fillLogInForm(UserData.email, UserData.password).clickOnLogInBtn();
         Assert.assertTrue(new RegistrationAndLoginPage(driver).isLogOutBtnDisplayed());
     }
 

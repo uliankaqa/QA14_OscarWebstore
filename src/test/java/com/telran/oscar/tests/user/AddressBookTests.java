@@ -4,7 +4,7 @@ import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.user.AccountSidePanelPage;
 import com.telran.oscar.pages.user.AddressBookPage;
 import com.telran.oscar.tests.TestBase;
-import com.telran.oscar.utils.RegisteredUserData;
+import com.telran.oscar.utils.UserData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,7 +14,7 @@ public class AddressBookTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition(){
         new HeaderPage(driver).clickOnLoginOrRegisterBtn()
-                .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
+                .fillLogInForm(UserData.email, UserData.password)
                 .clickOnLogInBtn();
         new HeaderPage(driver).clickOnAccountBtn();
         new AccountSidePanelPage(driver).clickOnAddressBookBtn();
@@ -23,19 +23,19 @@ public class AddressBookTests extends TestBase {
     @Test
     public void addNewAddressPositiveTest(){
         new AddressBookPage(driver).clickOnAddNewAddressBtn()
-                .fillAddNewAddressForm(RegisteredUserData.title,
-                RegisteredUserData.userFirstName, RegisteredUserData.userLastName,
-                RegisteredUserData.firstAddressLine, RegisteredUserData.secondAddressLine, RegisteredUserData.thirdAddressLine,
-                RegisteredUserData.city, RegisteredUserData.zipCode, RegisteredUserData.country,
-                RegisteredUserData.phoneNumber, RegisteredUserData.instructions)
+                .fillAddNewAddressForm(UserData.title,
+                UserData.userFirstName, UserData.userLastName,
+                UserData.firstAddressLine, UserData.secondAddressLine, UserData.thirdAddressLine,
+                UserData.city, UserData.zipCode, UserData.country,
+                UserData.phoneNumber, UserData.instructions)
                 .clickOnSaveNewAddressBtn();
-        String message = "Address '"+ RegisteredUserData.title + " "
-                + RegisteredUserData.userFirstName + " "
-                + RegisteredUserData.userLastName + ", "
-                + RegisteredUserData.firstAddressLine + ", "
-                + RegisteredUserData.city + ", "
-                + RegisteredUserData.zipCode + ", "
-                + RegisteredUserData.country + "' created";
+        String message = "Address '"+ UserData.title + " "
+                + UserData.userFirstName + " "
+                + UserData.userLastName + ", "
+                + UserData.firstAddressLine + ", "
+                + UserData.city + ", "
+                + UserData.zipCode + ", "
+                + UserData.country + "' created";
         Assert.assertTrue(new AddressBookPage(driver).getMessageText().contains(""));
 
 

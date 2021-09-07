@@ -4,7 +4,10 @@ import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.utils.DataProviders;
+import com.telran.oscar.utils.NewUserData;
+import com.telran.oscar.utils.UserData;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,9 +21,10 @@ public class RegistrationTests extends TestBase {
         new HeaderPage(driver).clickOnLoginOrRegisterBtn();
     }
 
-    @Test(priority = 1, groups = "functional", dataProviderClass = DataProviders.class, dataProvider = "registrationAndLoginPositive")
-    public void newUserRegistrationPositiveTest(String email, String pass){
-        new RegistrationAndLoginPage(driver).fillRegistrationForm(email, pass, pass)
+    @Test(priority = 1, groups = "functional")
+    public void newUserRegistrationPositiveTest(){
+        new RegistrationAndLoginPage(driver)
+                .fillRegistrationForm(NewUserData.email, NewUserData.password, NewUserData.password)
                 .clickOnRegisterBtn();
         Assert.assertTrue(new RegistrationAndLoginPage(driver).isLogOutBtnDisplayed());
     }
@@ -50,6 +54,17 @@ public class RegistrationTests extends TestBase {
         Assert.assertTrue(new RegistrationAndLoginPage(driver).isRegisterFormDisplayed());
         //System.out.println("Wrong confirm pass message: " + new RegistrationAndLoginPage(driver).getErrorMessage());
         Assert.assertTrue(new RegistrationAndLoginPage(driver).getErrorMessage().contains(wrongConfirmPasswordMessage));
+
+    }
+    @AfterMethod
+    public void cleanUp(){
+        HeaderPage header = new HeaderPage(driver);
+        if(header.isLogoutBtnVisible()) {
+            header.clickOnAccountBtn()
+                    .clickOnDeleteProfileBtn()
+                    .typePassword(NewUserData.password)
+                    .clickOnDeleteProfileConfirmBtn();
+        }
 
     }
 }

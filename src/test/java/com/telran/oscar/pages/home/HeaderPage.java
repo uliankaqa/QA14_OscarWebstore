@@ -25,6 +25,7 @@ public class HeaderPage extends PageBase {
     WebElement accountBtn;
 
     @FindBy(xpath = "//span/a[.='View basket']")
+            //css Selector : .btn-group .btn-default:nth-child(1)
     WebElement viewBasketBtn;
 
     @FindBy(className = "hidden-xs")

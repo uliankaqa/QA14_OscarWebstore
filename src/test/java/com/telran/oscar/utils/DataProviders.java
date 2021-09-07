@@ -11,14 +11,10 @@ import java.util.List;
 
 public class DataProviders {
 
-   /*  @DataProvider
-   public Iterator<Object[]> positiveRegistration()  throws IOException {
-        return getDataProviderFromFile("/data_providers/user/positiveRegistration.csv");
-    }*/
 
     @DataProvider
-    public Iterator<Object[]> registrationAndLoginPositive() throws IOException {
-        return getDataProviderFromFile("/data_providers/user/loginPositive.csv");
+    public Iterator<Object[]> testBooksNamesList() throws IOException {
+        return getDataProviderFromFile("/data_providers/product/booksNamesList.csv");
     }
 
     @DataProvider

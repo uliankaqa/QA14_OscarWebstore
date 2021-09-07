@@ -67,7 +67,7 @@ public class ProfilePage extends PageBase {
         return new HomePage(driver);
     }
 
-    public ProfilePage clickOnEditeProfileBtn() {
+    public ProfilePage clickOnEditProfileBtn() {
         editProfileBtn.click();
         return this;
     }

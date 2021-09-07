@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression" parallel="classes" thread-count="3">
+    <test name="Regression">
+        <parameter name="browser" value="Chrome"></parameter>
+        <classes>
+            <!-- <class name="com.ilCarro.qa14.tests.CreateAccountTest">
+                 <methods>
+                     <include name="signUpFromDataProviderFromCSVTest"/>
+                 </methods>
+             </class>-->
+            <class name="com.telran.oscar.tests.user.RegistrationTests"/>
+            <class name="com.telran.oscar.tests.user.LoginTests"/>
+                <!--<methods>
+                    <include name="loginRegisteredUserFromCSVPositiveTest"/>
+                    <include name="loginRegisteredUserWithWrongPasswordNegativeTest"/>
+                </methods>
+            </class>-->
+        </classes>
+    </test>
+</suite>

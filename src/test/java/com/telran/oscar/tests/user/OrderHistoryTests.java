@@ -10,7 +10,7 @@ import com.telran.oscar.tests.TestBase;
 import com.telran.oscar.pages.basket.PaymentPage;
 import com.telran.oscar.pages.basket.ShippingAddressPage;
 import com.telran.oscar.utils.ProductsData;
-import com.telran.oscar.utils.RegisteredUserData;
+import com.telran.oscar.utils.UserData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ public class OrderHistoryTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition(){
         new HeaderPage(driver).clickOnLoginOrRegisterBtn()
-                .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
+                .fillLogInForm(UserData.email, UserData.password)
                 .clickOnLogInBtn();
     }
 
@@ -28,13 +28,13 @@ public class OrderHistoryTests extends TestBase {
     public void oderCreatePositiveTest(){
 
         new BrowseStorePage(driver).clickOnBooksTab();
-        new BooksPage(driver).clickOnAddToBaskedOnBookItem(ProductsData.byeBookName1);
+        new BooksPage(driver).clickOnAddToBaskedOnProductItem(ProductsData.byeBookName1);
         new HeaderPage(driver).clickOnViewBasketBtn().clickOnProceedToCheckoutBtn();
-        new ShippingAddressPage(driver).shipToAddress(RegisteredUserData.title,
-                RegisteredUserData.userFirstName, RegisteredUserData.userLastName,
-                RegisteredUserData.firstAddressLine, RegisteredUserData.secondAddressLine,
-                RegisteredUserData.thirdAddressLine, RegisteredUserData.city, RegisteredUserData.zipCode,
-                RegisteredUserData.country, RegisteredUserData.phoneNumber, RegisteredUserData.instructions);
+        new ShippingAddressPage(driver).shipToAddress(UserData.title,
+                UserData.userFirstName, UserData.userLastName,
+                UserData.firstAddressLine, UserData.secondAddressLine,
+                UserData.thirdAddressLine, UserData.city, UserData.zipCode,
+                UserData.country, UserData.phoneNumber, UserData.instructions);
         new PaymentPage(driver).clickOnContinueBtn().clickOnPlaceOrderBtn();
 
         String orderNumber = new ConfirmationPaymentPage(driver).getOrderNumber();

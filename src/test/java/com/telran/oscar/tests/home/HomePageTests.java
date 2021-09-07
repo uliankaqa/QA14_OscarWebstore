@@ -10,7 +10,7 @@ import com.telran.oscar.pages.products.ClothingPage;
 import com.telran.oscar.pages.products.OffersPage;
 import com.telran.oscar.pages.user.RegistrationAndLoginPage;
 import com.telran.oscar.tests.TestBase;
-import com.telran.oscar.utils.RegisteredUserData;
+import com.telran.oscar.utils.UserData;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -89,7 +89,7 @@ public class HomePageTests extends TestBase {
     public void AccountBtnRedirectToCorrectPageTest(){
         header.clickOnLoginOrRegisterBtn();
         new RegistrationAndLoginPage(driver)
-                .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
+                .fillLogInForm(UserData.email, UserData.password)
                 .clickOnLogInBtn();
         header.clickOnAccountBtn();
         Assert.assertTrue(header.getHeaderLink2Text().contains("Account"));
@@ -99,7 +99,7 @@ public class HomePageTests extends TestBase {
     public void logoutBtnRedirectToCorrectPageTest(){
         header.clickOnLoginOrRegisterBtn();
         new RegistrationAndLoginPage(driver)
-                .fillLogInForm(RegisteredUserData.email, RegisteredUserData.password)
+                .fillLogInForm(UserData.email, UserData.password)
                 .clickOnLogInBtn();
         header.clickOnLogoutBtn();
         Assert.assertTrue(new HomePage(driver).isHomePagePresent());
@@ -121,19 +121,19 @@ public class HomePageTests extends TestBase {
     @Test
     public void allProductTabRedirectToCorrectPageTest(){
         browseStore.clickOnAllProductsTab();
-        Assert.assertEquals(new AllProductsPage(driver).getAllProductPageTitle(), "All products");
+        Assert.assertEquals(new AllProductsPage(driver).getProductPageTitle(), "All products");
     }
 
     @Test
     public void clothingTabRedirectToCorrectPageTest(){
         browseStore.clickOnClothingTab();
-        Assert.assertEquals(new ClothingPage(driver).getClothingPageTitle(), "Clothing");
+        Assert.assertEquals(new ClothingPage(driver).getProductPageTitle(), "Clothing");
     }
 
     @Test
     public void booksTabRedirectToCorrectPageTest(){
         browseStore.clickOnBooksTab();
-        Assert.assertEquals(new BooksPage(driver).getBooksPageTitle(), "Books");
+        Assert.assertEquals(new BooksPage(driver).getProductPageTitle(), "Books");
     }
 
     @Test
@@ -149,5 +149,5 @@ public class HomePageTests extends TestBase {
         Assert.assertEquals("Search", header.getHeaderLink2Text());
         Assert.assertTrue(header.getHeaderLink3Text().contains("Agile"));
     }
-    
+
 }

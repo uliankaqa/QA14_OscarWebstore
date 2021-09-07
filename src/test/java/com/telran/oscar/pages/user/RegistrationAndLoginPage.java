@@ -1,6 +1,7 @@
 package com.telran.oscar.pages.user;
 
 import com.telran.oscar.pages.PageBase;
+import com.telran.oscar.pages.home.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -64,15 +65,17 @@ public class RegistrationAndLoginPage extends PageBase {
         return this;
     }
 
-    public void clickOnRegisterBtn() {
+    public HomePage clickOnRegisterBtn() {
 
         registerBtn.click();
         pause(2000);
+        return new HomePage(driver);
     }
 
-    public void clickOnLogInBtn(){
+    public HomePage clickOnLogInBtn(){
         logInBtn.click();
         pause(2000);
+        return new HomePage(driver);
     }
 
     public void clickOnForgottenPasswordLink(){
