@@ -64,6 +64,11 @@ public class BasketPage extends PageBase {
         type(quantity, quantityOfProduct);
         elem.findElement(By.cssSelector(".input-group-btn .btn")).click();
     }
+
+    public String getQuantityFailMessage(String productTitle){
+        WebElement elem = getProductElementByTitle(productTitle);
+        return elem.findElement(By.xpath("//span[@class='error-block']")).getText();
+    }
     private WebElement getProductElementByTitle(String productTitle){
         for (WebElement elem : baskedFormList) {
             String title = elem.findElement(By.tagName("h3")).getText();
@@ -84,5 +89,9 @@ public class BasketPage extends PageBase {
             WebElement elem = baskedFormList.get(0);
             setQuantityByElement(elem, "0");
         }
+    }
+
+    public int getCountItemsList() {
+        return baskedFormList.size();
     }
 }

@@ -11,6 +11,9 @@
              </class>-->
             <class name="com.telran.oscar.tests.user.RegistrationTests"/>
             <class name="com.telran.oscar.tests.user.LoginTests"/>
+            <class name="com.telran.oscar.tests.home.HomePageTests"/>
+            <class name="com.telran.oscar.tests.products.ProductsPageTests"/>
+            <class name="com.telran.oscar.tests.basket.BasketRegisteredUserTests"/>
                 <!--<methods>
                     <include name="loginRegisteredUserFromCSVPositiveTest"/>
                     <include name="loginRegisteredUserWithWrongPasswordNegativeTest"/>
