@@ -22,6 +22,12 @@ public class OrderHistoryPage extends PageBase {
     @FindBy(xpath = "//th[.='Order total']/../td")
     WebElement totalOrderTd;
 
+    @FindBy(css = ".table-bordered tr:nth-child(2) td:nth-child(1) a")
+    WebElement firstOrderNumber;
+
+    @FindBy(css = ".table-bordered tr:nth-child(2) td:nth-child(3)")
+    WebElement firstOrderTotal;
+
     public String getOrderNumber() {
         return titleStr.getText();
     }
@@ -34,5 +40,13 @@ public class OrderHistoryPage extends PageBase {
         type(orderNumberInput, orderNumber);
         filterResultsBtn.click();
         return this;
+    }
+
+    public String getFirstOrderNumberFromTable(){
+        return firstOrderNumber.getText();
+    }
+
+    public String getFirstOrderTotalFromTable(){
+        return firstOrderTotal.getText();
     }
 }

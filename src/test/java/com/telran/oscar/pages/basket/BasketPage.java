@@ -81,6 +81,7 @@ public class BasketPage extends PageBase {
 
     public ShippingAddressPage clickOnProceedToCheckoutBtn() {
         proceedToCheckoutBtn.click();
+
         return new ShippingAddressPage(driver);
     }
 

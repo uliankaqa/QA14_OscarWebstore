@@ -19,21 +19,21 @@ public class TestBase {
 
     protected EventFiringWebDriver driver;
 
-    @BeforeMethod(alwaysRun = true)
-    @Parameters("browser")
-   public void setUp(String browser){
-    //public void setUp(){
-        if (browser.equalsIgnoreCase("chrome")) {
+    @BeforeMethod//(alwaysRun = true)
+    // @Parameters("browser")
+    //public void setUp(String browser){
+    public void setUp(){
+        //if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions()
-            .addArguments("headless")
+            //.addArguments("headless")
             .addArguments("window-size=1200x800");
             driver = new EventFiringWebDriver(new ChromeDriver(options));
-        }else if (browser.equalsIgnoreCase("firefox")){
+        /* }else if (browser.equalsIgnoreCase("firefox")){
             FirefoxOptions options = new FirefoxOptions()
                     .addArguments("headless")
                     .addArguments("window-size=1200x800");
             driver = new EventFiringWebDriver( new FirefoxDriver(options));
-        }
+        }*/
         // driver.manage().window().maximize();
         //driver = new EventFiringWebDriver(new ChromeDriver());
         driver.register(new MyListener());
@@ -43,7 +43,7 @@ public class TestBase {
 
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod//(alwaysRun = true)
     public void tearDown(ITestResult result) {
         driver.quit();
     }
