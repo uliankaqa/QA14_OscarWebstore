@@ -3,6 +3,7 @@ package com.telran.oscar.tests.basket;
 import com.telran.oscar.pages.home.BrowseStorePage;
 import com.telran.oscar.pages.home.HeaderPage;
 import com.telran.oscar.pages.basket.BasketPage;
+import com.telran.oscar.pages.products.AllProductsPage;
 import com.telran.oscar.pages.products.BooksPage;
 import com.telran.oscar.pages.products.ProductListPage;
 import com.telran.oscar.tests.TestBase;
@@ -32,6 +33,17 @@ public class BasketRegisteredUserTests extends TestBase {
         new BooksPage(driver).clickOnAddToBaskedOnProductItem(byeBook);
         new HeaderPage(driver).clickOnViewBasketBtn();
         Assert.assertTrue(basket.isProductAddedToBasket(byeBook));
+    }
+
+    @Test
+    public void verifyingPriceOfProductAddedToBasketTest(){
+        String bookName = ProductsData.byeBookName2;
+        AllProductsPage allProductsPage = PageFactory.initElements(driver, AllProductsPage.class);
+        double price = allProductsPage.getPriceOfChosenProduct(bookName);
+        allProductsPage.clickOnAddToBaskedOnProductItem(bookName);
+        new HeaderPage(driver).clickOnViewBasketBtn();
+        Assert.assertEquals(basket.getPriceByProductName(bookName), price);
+
     }
 
     @Test
@@ -70,6 +82,6 @@ public class BasketRegisteredUserTests extends TestBase {
 
     @AfterMethod
     public void cleanBasket(){
-        new BasketPage(driver).clean();
+        basket.clean();
     }
 }

@@ -95,4 +95,6 @@ public class BasketPage extends PageBase {
     public int getCountItemsList() {
         return baskedFormList.size();
     }
+
+
 }

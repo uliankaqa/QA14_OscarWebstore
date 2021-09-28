@@ -135,4 +135,15 @@ public class ProductListPage extends PageBase {
         }
         return false;
     }
+
+    public double getPriceOfChosenProduct(String bookName) {
+        try {
+            WebElement book = getProductFromListByTitle(bookName);
+            //Double.parseDouble(price.replace("£", ""));
+           return Double.parseDouble(book.findElement(By.cssSelector(".price_color")).getText().replace("£", ""));
+        }catch (Exception e){
+            System.out.println("My Error: " + e.getMessage());
+        }
+       return -1.1;
+    }
 }
